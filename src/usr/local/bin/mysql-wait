@@ -1,0 +1,10 @@
+#!/bin/sh
+
+echo "Waiting for mariadb server"
+for i in {30..0}; do
+    if echo "SELECT 1;" | mysql --host=$MYSQL_HOST --user=$MYSQL_USER &>/dev/null; then
+        break
+    fi
+    echo -n '.'
+    sleep 1
+done
